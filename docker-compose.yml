@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  java-pg-core:
+    build:
+      context: ./java-pg-core/
+      args:
+        PROFILE_NAME: ${JAVA_PG_CORE_BUILD_PROFILE}
+    image: java-pg-core:1.0.0-SNAPSHOT
+    container_name: java-pg-core
+    restart: unless-stopped
+    ports:
+      - '${JAVA_PG_CORE_SERVER_PORT}:${JAVA_PG_CORE_SERVER_PORT}'
+    environment: 
+      TZ: ${TZ}
+      JAVA_PG_CORE_SERVER_PORT: ${JAVA_PG_CORE_SERVER_PORT}
+      JAVA_PG_CORE_DB_URL: ${JAVA_PG_CORE_DB_URL}
+      JAVA_PG_CORE_SQL_USER: ${JAVA_PG_CORE_SQL_USER}
+      JAVA_PG_CORE_SQL_PASSWORD: ${JAVA_PG_CORE_SQL_PASSWORD}
